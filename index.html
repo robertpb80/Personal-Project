@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="simpleWebRTC">
+<head>
+	<title>Simple Web RTC</title>
+	<script src="//simplewebrtc.com/latest.js"></script>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body ng-controller="mainController">
+
+<h1 class="title">Aluvii Video Chat</h1>
+	<div class="video"><video height="300" id="localVideo"></video></div>
+    <div id="remotesVideos"></div>
+
+    <div class="video_controls">
+ 		<button Class="button primary" ng-click="webcam()">Start</button>
+  		<button class="button">Call</button>
+  		<button class="button negative" ng-click="videoOff()">Hang Up</button>
+  		<button class="button" ng-click="mute()">Pause</button>
+  		<button class="button" ng-click="unmute()">Unmute</button>
+	</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>// <![CDATA[
+    $(document).ready(function() {
+        $.post("https://api.xirsys.com/getIceServers", {
+     	    ident: "robertpb",
+            secret: "3050887b-4cba-4442-9065-2b4c48dadab7",
+            domain: "www.aluvii.com",
+            application: "default",
+            room: "default",
+            secure: 1
+        },
+            function(data, status) {
+                console.log("Data: " + data + "nnStatus: " + status);
+            });
+    });
+// ]]></script>
+<script src="js/app.js"></script>
+<script src="js/mainController.js"></script>
+<script src="js/mainService.js"></script>
+
+</body>
+</html>
